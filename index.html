@@ -107,9 +107,8 @@
             <div class="am-comment-main">
                 <header class="am-comment-hd">
                     <div class="am-comment-meta">
-                        <a href="#link-to-user" class="am-comment-author">回答人姓名</a>回答时间
-                        <time datetime="2013-07-27T04:54:29-07:00" title="2013年7月27日 下午7:54 格林尼治标准时间+0800">2014-7-12
-                            15:30
+                        <a href="#link-to-user" class="am-comment-author">小Y</a>回答时间
+                        <time datetime="时间" title="时间" class="time-a">
                         </time>
                     </div>
                 </header>
@@ -127,10 +126,8 @@
             <div class="am-comment-main">
                 <header class="am-comment-hd">
                     <div class="am-comment-meta">
-                        <a href="#link-to-user" class="am-comment-author">提问人姓名</a>提问时间
-                        <time datetime="2013-07-27T04:54:29-07:00" title="2013年7月27日 下午7:54 格林尼治标准时间+0800">2014-7-13
-                            0:03
-                        </time>
+                        <a href="#link-to-user" class="am-comment-author">小珊珊</a>提问时间
+                        <time datetime="时间" title="时间" class="time-q"></time>
                     </div>
                 </header>
                 <div class="am-comment-bd">
@@ -147,7 +144,7 @@
                     </div>
                 </header>
                 <div class="am-comment-bd">
-                    <input type="submit" class="am-btn am-btn-primary" onclick="sendQuestion()" value="提交">
+                    <input type="submit" class="am-btn am-btn-primary" onclick="sendQuestion()" style="float: left;" value="提交">
                     <input type="reset" class="am-btn am-btn-primary" style="float: right;" onclick="reset()" value="取消">
                 </div>
             </div>
@@ -163,12 +160,16 @@
        if(que != ''){
            $(".contnet-a").text(null);
            $(".contnet-a").text(que);
+           var mydate = new Date();
+           $(".time-a").text(mydate.toLocaleString());
        }
         $.post("request.php", { question: $("#question").val()},
             function(data){
                 if(data.code ===1){
                     $(".contnet-q").text(null);
                     $(".contnet-q").text(data.data);
+                    var mydate = new Date();
+                    $(".time-q").text(mydate.toLocaleString());
                 }
             },'json');
     }
