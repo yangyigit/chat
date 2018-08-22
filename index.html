@@ -15,6 +15,7 @@
     <meta http-equiv="Cache-Control" content="no-siteapp"/>
     <link rel="alternate icon" type="image/png" href="assets/i/favicon.png">
     <link rel="stylesheet" href="https://cdn.bootcss.com/amazeui/2.7.2/css/amazeui.min.css"/>
+    <script type="text/javascript" src="../jquery-1.7.2.min.js"></script>
     <style>
         @media only screen and (min-width: 641px) {
             .am-offcanvas {
@@ -94,14 +95,13 @@
 </header>
 <hr class="am-article-divider"/>
 
-<form action="">
 <div class="am-u-sm-5 am-u-sm-centered">
     <hr/>
     <ul class="am-comments-list am-comments-list-flip">
 
         <li class="am-comment">
             <a href="#link-to-user-home">
-                <img src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/96/h/96/q/80" alt=""
+                <img src="./image/ask_a.jpg" alt=""
                      class="am-comment-avatar" width="48" height="48">
             </a>
             <div class="am-comment-main">
@@ -121,7 +121,7 @@
 
         <li class="am-comment am-comment-flip">
             <a href="#link-to-user-home">
-                <img src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/96/h/96/q/80" alt=""
+                <img src="./image/ask_q.jpg" alt=""
                      class="am-comment-avatar" width="48" height="48">
             </a>
             <div class="am-comment-main">
@@ -139,79 +139,31 @@
             </div>
         </li>
 
-        <li class="am-comment">
-            <a href="#link-to-user-home">
-                <img src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/96/h/96/q/80" alt=""
-                     class="am-comment-avatar" width="48" height="48">
-            </a>
-            <div class="am-comment-main">
-                <header class="am-comment-hd">
-                    <div class="am-comment-meta">
-                        <a href="#link-to-user" class="am-comment-author">回答人姓名</a>回答时间
-                        <time datetime="2013-07-27T04:54:29-07:00" title="2013年7月27日 下午7:54 格林尼治标准时间+0800">2014-7-12
-                            15:30
-                        </time>
-                    </div>
-                </header>
-                <div class="am-comment-bd">
-                    <p>回答的内容</p>
-                </div>
-            </div>
-        </li>
-        <li class="am-comment am-comment-flip">
-            <a href="#link-to-user-home">
-                <img src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/96/h/96/q/80" alt=""
-                     class="am-comment-avatar" width="48" height="48">
-            </a>
-            <div class="am-comment-main">
-                <header class="am-comment-hd">
-                    <div class="am-comment-meta">
-                        <a href="#link-to-user" class="am-comment-author">提问人姓名</a>提问时间
-                        <time datetime="2013-07-27T04:54:29-07:00" title="2013年7月27日 下午7:54 格林尼治标准时间+0800">2014-7-13
-                            0:03
-                        </time>
-                    </div>
-                </header>
-                <div class="am-comment-bd">
-                    <p>提问内容</p>
-                </div>
-            </div>
-        </li>
-
-        <li class="am-comment">
-            <a href="#link-to-user-home">
-                <img src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/96/h/96/q/80" alt=""
-                     class="am-comment-avatar" width="48" height="48">
-            </a>
-            <div class="am-comment-main">
-                <header class="am-comment-hd">
-                    <div class="am-comment-meta">
-                        <a href="#link-to-user" class="am-comment-author">回答人姓名</a>回答时间
-                        <time datetime="2013-07-27T04:54:29-07:00" title="2013年7月27日 下午7:54 格林尼治标准时间+0800">2014-7-12
-                            15:30
-                        </time>
-                    </div>
-                </header>
-                <div class="am-comment-bd">
-                    <p>回答的内容</p>
-                </div>
-            </div>
-        </li>
         <li class="am-comment">
             <div class="am-comment-input">
                 <header class="am-comment-hd">
                     <div class="am-comment-meta">
-                        <textarea name="" id="" cols="30" rows="10" style="width:100%;"></textarea>
+                        <textarea name="question" id="question" cols="30" rows="10" style="width:100%; resize: none"></textarea>
                     </div>
                 </header>
                 <div class="am-comment-bd">
-                    <input type="submit" value="提交">
-                    <input type="reset" value="取消">
+                    <input type="submit" class="am-btn am-btn-primary" onclick="sendQuestion()" value="提交">
+                    <input type="reset" class="am-btn am-btn-primary" style="float: right;" value="取消">
                 </div>
             </div>
         </li>
     </ul>
 </div>
-</form>
+
 </body>
 </html>
+<script type="text/javascript">
+    function sendQuestion() {
+        $.post("request.php", { question: $("#question").val()},
+            function(data){
+                if(data.code ===1){
+                    console.log(data.data)
+                }
+            },'json');
+    }
+</script>
