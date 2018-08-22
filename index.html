@@ -15,8 +15,7 @@
     <meta http-equiv="Cache-Control" content="no-siteapp"/>
     <link rel="alternate icon" type="image/png" href="assets/i/favicon.png">
     <link rel="stylesheet" href="https://cdn.bootcss.com/amazeui/2.7.2/css/amazeui.min.css"/>
-    <script type="text/javascript" src="js/main.js"></script>
-    <script type="text/javascript" src="../jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="./js/jquery-1.7.2.min.js"></script>
     <style>
         @media only screen and (min-width: 641px) {
             .am-offcanvas {
@@ -158,3 +157,27 @@
 
 </body>
 </html>
+<script type="text/javascript">
+    function sendQuestion() {
+        var que = $("#question").val();
+       if(que != ''){
+           $(".contnet-a").text(null);
+           $(".contnet-a").text(que);
+       }
+        $.post("request.php", { question: $("#question").val()},
+            function(data){
+                if(data.code ===1){
+                    $(".contnet-q").text(null);
+                    $(".contnet-q").text(data.data);
+                }
+            },'json');
+    }
+    function reset() {
+        $("#question").val(null);
+    }
+    $(document).keydown(function(event){
+        if(event.keyCode === 13){
+            sendQuestion();
+        }
+    });
+</script>
