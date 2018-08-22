@@ -36,9 +36,9 @@ if($_REQUEST['question']){
 }else{
     $info = "你好";
 }
-//$url = "http://op.juhe.cn/robot/index?info=$info&key=76329c3221651af393920e1331e61002";
-//$rep = send_form($url,$https=false);
-$rep = '{
+$url = "http://op.juhe.cn/robot/index?info=$info&key=76329c3221651af393920e1331e61002";
+$rep = send_form($url,$https=false);
+/*$rep = '{
     "reason":"成功的返回",
     "result": 
         {
@@ -46,7 +46,7 @@ $rep = '{
             "text":"你好啊，希望你今天过的快乐"
         },
      "error_code":0
-}';
+}';*/
 $data = json_decode($rep,true);
 if($data['result']['code'] == 100000){
     $msg = array('code'=>1,'data'=>$data['result']['text'],'msg'=>"success");

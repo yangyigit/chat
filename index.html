@@ -15,6 +15,7 @@
     <meta http-equiv="Cache-Control" content="no-siteapp"/>
     <link rel="alternate icon" type="image/png" href="assets/i/favicon.png">
     <link rel="stylesheet" href="https://cdn.bootcss.com/amazeui/2.7.2/css/amazeui.min.css"/>
+    <script type="text/javascript" src="js/main.js"></script>
     <script type="text/javascript" src="../jquery-1.7.2.min.js"></script>
     <style>
         @media only screen and (min-width: 641px) {
@@ -114,7 +115,7 @@
                     </div>
                 </header>
                 <div class="am-comment-bd">
-                    <p>回答的内容</p>
+                    <p class="contnet-a"></p>
                 </div>
             </div>
         </li>
@@ -134,7 +135,7 @@
                     </div>
                 </header>
                 <div class="am-comment-bd">
-                    <p>提问内容</p>
+                    <p class="contnet-q"></p>
                 </div>
             </div>
         </li>
@@ -148,7 +149,7 @@
                 </header>
                 <div class="am-comment-bd">
                     <input type="submit" class="am-btn am-btn-primary" onclick="sendQuestion()" value="提交">
-                    <input type="reset" class="am-btn am-btn-primary" style="float: right;" value="取消">
+                    <input type="reset" class="am-btn am-btn-primary" style="float: right;" onclick="reset()" value="取消">
                 </div>
             </div>
         </li>
@@ -157,13 +158,3 @@
 
 </body>
 </html>
-<script type="text/javascript">
-    function sendQuestion() {
-        $.post("request.php", { question: $("#question").val()},
-            function(data){
-                if(data.code ===1){
-                    console.log(data.data)
-                }
-            },'json');
-    }
-</script>
